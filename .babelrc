@@ -1,29 +1,12 @@
 {
   "presets": [
-    "./build/preset-env",
     "@babel/react",
-    ["@babel/stage-1", { "decoratorsLegacy": true }]
-  ],
-  "plugins": [
-    "lodash",
-    "transform-react-handled-props",
-    ["transform-react-remove-prop-types", {
-      "mode": "wrap"
-    }],
-    ["@babel/transform-runtime", {
-      "polyfill": false,
-      "regenerator": false
-    }]
+    "@babel/stage-1"
   ],
   "env": {
     "development": {
       "plugins": [
         "react-hot-loader/babel"
-      ]
-    },
-    "test": {
-      "plugins": [
-        ["istanbul", { "include": ["src"] }]
       ]
     }
   }

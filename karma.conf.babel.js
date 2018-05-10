@@ -8,7 +8,7 @@ const revisionInfo = Downloader.revisionInfo(Downloader.currentPlatform(), revis
 
 process.env.CHROME_BIN = revisionInfo.executablePath
 
-const formatError = (msg) => {
+const formatError = msg => {
   // filter out empty lines and node_modules
   if (!msg.trim() || /~/.test(msg)) return ''
 
@@ -26,7 +26,7 @@ const formatError = (msg) => {
   return `${newLine}\n`
 }
 
-export default (karmaConfig) => {
+export default karmaConfig => {
   karmaConfig.set({
     basePath: process.cwd(),
     browsers: ['puppeteer'],
@@ -37,10 +37,7 @@ export default (karmaConfig) => {
       },
     },
     coverageReporter: {
-      reporters: [
-        { type: 'lcov', dir: 'coverage', subdir: '.' },
-        { type: 'text-summary' },
-      ],
+      reporters: [{ type: 'lcov', dir: 'coverage', subdir: '.' }, { type: 'text-summary' }],
       includeAllSources: true,
     },
     customLaunchers: {
@@ -54,9 +51,7 @@ export default (karmaConfig) => {
         ],
       },
     },
-    files: [
-      './test/tests.bundle.js',
-    ],
+    files: ['./test/tests.bundle.js'],
     formatError,
     frameworks: ['mocha'],
     reporters: ['mocha', 'coverage'],

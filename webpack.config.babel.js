@@ -46,13 +46,13 @@ const APP_ENTRY = paths.docsSrc('index.js')
 
 webpackConfig.entry = __DEV__
   ? {
-    app: ['react-hot-loader/patch', webpackHotMiddlewareEntry, APP_ENTRY],
-    vendor: [webpackHotMiddlewareEntry, ...config.compiler_vendor],
-  }
+      app: ['react-hot-loader/patch', webpackHotMiddlewareEntry, APP_ENTRY],
+      vendor: [webpackHotMiddlewareEntry, ...config.compiler_vendor],
+    }
   : {
-    app: APP_ENTRY,
-    vendor: config.compiler_vendor,
-  }
+      app: APP_ENTRY,
+      vendor: config.compiler_vendor,
+    }
 
 // ------------------------------------
 // Bundle Output
@@ -84,7 +84,6 @@ webpackConfig.plugins = [
       collapseWhitespace: true,
     },
     versions: {
-      babel: require('@babel/standalone/package.json').version,
       faker: require('faker/package.json').version,
       jsBeautify: require('js-beautify/package.json').version,
       lodash: require('lodash/package.json').version,
@@ -137,7 +136,6 @@ if (!__TEST__) {
   webpackConfig.externals = {
     ...webpackConfig.externals,
     'anchor-js': 'AnchorJS',
-    '@babel/standalone': 'Babel',
     faker: 'faker',
     'prop-types': 'PropTypes',
     react: 'React',
@@ -170,10 +168,8 @@ if (!__TEST__) {
 // ------------------------------------
 const jsLoaders = [
   {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-    },
+    loader: 'awesome-typescript-loader',
+    options: {},
   },
 ]
 if (__DEV__) jsLoaders.unshift('react-hot-loader/webpack')
