@@ -16,6 +16,8 @@ import {
   variablesContext,
   repoURL,
   scrollToAnchor,
+  examplePathToHash,
+  getFormattedHash,
 } from 'docs/src/utils'
 import Editor from 'docs/src/components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
@@ -72,7 +74,7 @@ class ComponentExample extends PureComponent {
 
   componentWillMount() {
     const { examplePath } = this.props
-    this.anchorName = _.kebabCase(_.last(examplePath.split('/')))
+    this.anchorName = examplePathToHash(examplePath)
 
     const exampleElement = this.renderOriginalExample()
 
@@ -111,7 +113,7 @@ class ComponentExample extends PureComponent {
     return showCode || showHTML || showVariables
   }
 
-  isActiveHash = () => this.anchorName === this.props.location.hash.replace('#', '')
+  isActiveHash = () => this.anchorName === getFormattedHash(this.props.location.hash)
 
   updateHash = () => {
     if (this.isActiveState()) this.setHashAndScroll()

@@ -1,32 +1,10 @@
-import _ from 'lodash/fp'
-
-import * as semanticUIReact from 'src'
-import { META } from 'src/lib'
-
 export * from './constants'
+export exampleContext from './exampleContext'
+export examplePathToHash from './examplePathToHash'
 export getComponentGroup from './getComponentGroup'
+export getFormattedHash from './getFormattedHash'
 export getSeeItems from './getSeeItems'
+export knobsContext from './knobsContext'
 export scrollToAnchor from './scrollToAnchor'
-
-/**
- * Get the Webpack Context for all doc site examples.
- */
-export const exampleContext = require.context(
-  'docs/src/examples/',
-  true,
-  /(\w+Example\w*|index)\.js$/,
-)
-
-/**
- * Get the Webpack Context for all src component variables.
- */
-export const variablesContext = require.context('src/components/', true, /\w+Variables\.js$/)
-
-/**
- * Get the Webpack Context for all component knob files.
- */
-export const knobsContext = require.context('docs/src/examples/', true, /\w+\.knobs\.js$/)
-
-export const parentComponents = _.flow(_.filter(META.isParent), _.sortBy('_meta.name'))(
-  semanticUIReact,
-)
+export parentComponents from './parentComponents'
+export variablesContext from './variablesContext'
